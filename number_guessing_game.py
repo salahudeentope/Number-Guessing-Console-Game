@@ -33,9 +33,12 @@ def guessing_game():
                 user_guess = int(input(f'Kindly input a guess between 1 - {n}: '))
             except ValueError:
                 print(f'That is not a valid guess')
-                continue
+                # continue
             else:
-                break
+                if user_guess < 1 or user_guess > n:
+                    continue
+                else:
+                    break
 
         if user_guess != answer:
             print("That was wrong!")
