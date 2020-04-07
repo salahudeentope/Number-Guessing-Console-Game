@@ -9,6 +9,7 @@ def right_answer():
     :return: the right answer (answer), number of guesses allowed (guesses)
      and the maximum number (n)
     """
+    print("These are the available levels!")
     print('Easy: guess a number between 1-10 with 6 guesses')
     print('Medium: Guess a number between 1-20 with 4 guesses')
     print('Hard: Guess a number between 1-50 with 3 guesses \n')
@@ -31,12 +32,14 @@ def right_answer():
 
 
 def guessing_game():
+    print("Welcome to this fun guessing game!")
+    print()
     """
     A function to take the players guess as an input and compare it to the right answer generated from the
     right_answer() function.
 
-    :return: Prints that is wrong is the player inputs a number different from the right_answer,
-    and prints "you got it right!" if the guess is same as the answer. I also prints "game over!" if
+    :return: Prints "That was wrong!" if the player inputs a number different from the right_answer,
+    and prints "you got it right!" if the guess is same as the answer. It also prints "game over!" if
     the player runs out of guesses.
     """
     answer, guesses, n = right_answer()
