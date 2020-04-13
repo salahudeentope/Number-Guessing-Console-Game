@@ -64,9 +64,10 @@ def guessing_game():
             guesses -= 1
             if guesses == 0:  # When the player is out of guesses.
                 print('Game Over!')
+                print(f'Thank you for playing, the answer is {answer}')
             continue
         else:
-            print("You got it right!")
+            print(f"You got it right! the answer is indeed {answer}")
             break
 
 
