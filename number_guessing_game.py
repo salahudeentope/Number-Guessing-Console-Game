@@ -13,14 +13,15 @@ def right_answer():
     print('Easy: guess a number between 1-10 with 6 guesses')
     print('Medium: Guess a number between 1-20 with 4 guesses')
     print('Hard: Guess a number between 1-50 with 3 guesses \n')
-    level = input("Kindly input the level you want to play [easy, medium, hard]: ")
+    level = input("Kindly input the level you want to play [easy [E], medium[M], hard[H]]: ")
 
-    while level.lower() not in ['easy', 'medium', 'hard']:  # to check that no invalid selection was made.
+    while level.lower() not in ['easy', 'e', 'medium', 'm', 'hard', "h"]:  # to check that no invalid selection was
+        # made.
         level = input("Kindly input a valid level selection [easy, medium, hard]: ")
-    if level.lower() == 'easy':
+    if level.lower() in ['easy', "e"]:
         n = 10
         guesses = 6
-    elif level.lower() == 'medium':
+    elif level.lower() in ['medium', "m"]:
         n = 20
         guesses = 4
     else:
@@ -42,33 +43,46 @@ def guessing_game():
     and prints "you got it right!" if the guess is same as the answer. It also prints "game over!" if
     the player runs out of guesses.
     """
-    answer, guesses, n = right_answer()
+    continue_game = "yes"
+    while continue_game == 'yes':
+        answer, guesses, n = right_answer()
 
-    while guesses > 0:  # to check if the player still has guesses left.
-        print(f"you have {guesses} guesses left")
-        while True:
-            try:  # to check if the player inputs something different from a number or a number out of range for the
-                # level the player is playing.
-                user_guess = int(input(f'Kindly input a guess between 1 - {n}: '))
-            except ValueError:
-                print(f'That is not a valid guess')
-                # continue
-            else:
-                if user_guess < 1 or user_guess > n:
-                    continue
+        while guesses > 0:  # to check if the player still has guesses left.
+            print(f"you have {guesses} guesses left")
+            while True:
+                try:  # to check if the player inputs something different from a number or a number out of range for the
+                    # level the player is playing.
+                    user_guess = int(input(f'Kindly input a guess between 1 - {n}: '))
+                except ValueError:
+                    print(f'That is not a valid guess')
+                    # continue
                 else:
-                    break
+                    if user_guess < 1 or user_guess > n:
+                        continue
+                    else:
+                        break
 
-        if user_guess != answer:  # if the player's guess is wrong.
-            print("That was wrong!")
-            guesses -= 1
-            if guesses == 0:  # When the player is out of guesses.
-                print('Game Over!')
-                print(f'Thank you for playing, the answer is {answer}')
+            if user_guess != answer:  # if the player's guess is wrong.
+                print("That was wrong!")
+                guesses -= 1
+
+                if guesses == 0:  # When the player is out of guesses.
+                    print('Game Over!')
+                    print(f'Thank you for playing, the answer is {answer}')
+                continue
+            else:
+                print(f"You got it right! the answer is indeed {answer}")
+                break
+
+        continue_game = input("Do you want to play again? [yes/no] ").lower()
+        while continue_game not in ['yes', 'no']:
+            continue_game = input('kindly input a valid selection [yes/no]')
+        if continue_game == 'yes':
+            print()
             continue
         else:
-            print(f"You got it right! the answer is indeed {answer}")
-            break
+            print ("Thank you for playing!")
+
 
 
 guessing_game()
