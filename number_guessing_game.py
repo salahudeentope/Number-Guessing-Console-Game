@@ -81,8 +81,7 @@ def guessing_game():
             print()
             continue
         else:
-            print ("Thank you for playing!")
-
+            print("Thank you for playing!")
 
 
 guessing_game()
