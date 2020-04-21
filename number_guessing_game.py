@@ -17,7 +17,7 @@ def right_answer():
 
     while level.lower() not in ['easy', 'e', 'medium', 'm', 'hard', "h"]:  # to check that no invalid selection was
         # made.
-        level = input("Kindly input a valid level selection [easy, medium, hard]: ")
+        level = input("Kindly input a valid level selection [easy [E], medium [M], hard[H]]: ")
     if level.lower() in ['easy', "e"]:
         n = 10
         guesses = 6
@@ -55,10 +55,13 @@ def guessing_game():
                     user_guess = int(input(f'Kindly input a guess between 1 - {n}: '))
                 except ValueError:
                     print(f'That is not a valid guess')
-                    # continue
                 else:
-                    if user_guess < 1 or user_guess > n:
-                        continue
+                    try: # to ensure that the player only inputs a number in the specified range.
+                        while user_guess < 1 or user_guess > n:
+                            user_guess = int(input(f'please enter a guess that is greater than one and less than or '
+                                                   f'equal to {n} '))
+                    except ValueError:
+                        print('that is not a valid guess')
                     else:
                         break
 
@@ -74,6 +77,7 @@ def guessing_game():
                 print(f"You got it right! the answer is indeed {answer}")
                 break
 
+        # To ask the player if they want to play another gain after finishing a game.
         continue_game = input("Do you want to play again? [yes/no] ").lower()
         while continue_game not in ['yes', 'no']:
             continue_game = input('kindly input a valid selection [yes/no]')
